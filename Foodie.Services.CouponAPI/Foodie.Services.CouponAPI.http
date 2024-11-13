@@ -1,0 +1,6 @@
+@Foodie.Services.CouponAPI_HostAddress = http://localhost:5051
+
+GET {{Foodie.Services.CouponAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

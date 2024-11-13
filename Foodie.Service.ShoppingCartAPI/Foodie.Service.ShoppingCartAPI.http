@@ -1,0 +1,6 @@
+@Foodie.Service.ShoppingCartAPI_HostAddress = http://localhost:5169
+
+GET {{Foodie.Service.ShoppingCartAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
