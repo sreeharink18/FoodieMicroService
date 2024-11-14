@@ -2,7 +2,9 @@
 using Foodie.Service.ShoppingCartAPI.Data;
 using Foodie.Service.ShoppingCartAPI.Model;
 using Foodie.Service.ShoppingCartAPI.Model.DTO;
+using Foodie.Service.ShoppingCartAPI.RabbitMQSender;
 using Foodie.Service.ShoppingCartAPI.Service.IService;
+using Foodie.Service.ShoppingCartAPI.Utility;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,11 +20,14 @@ namespace Foodie.Service.ShoppingCartAPI.Controllers
         private readonly ApplicationDbContext _db;
         private IMapper _mapper;
         private IProductService _productService;
-        public CartApiController(ApplicationDbContext db, IMapper mapper,IProductService productService)
+        private IRabittMQCartMessageSender _messageSender;
+        public CartApiController(ApplicationDbContext db, IMapper mapper,
+            IProductService productService,IRabittMQCartMessageSender messageSender)
         {
             _db = db;
             _mapper = mapper;
             _productService = productService;
+            _messageSender = messageSender;
         }
         [HttpGet("getCart/{userId}")]
         public async Task<IActionResult> GetCart(string userId)
@@ -127,6 +132,7 @@ namespace Foodie.Service.ShoppingCartAPI.Controllers
             try
             {
                 var cartDtoResponse =  cartDto;
+                _messageSender.SendMessage(cartDto, SD.RabbitMQQueueName);
                 return Ok(ApiResponseHelper.SuccessResponse(cartDtoResponse));
             }
             catch (Exception ex)

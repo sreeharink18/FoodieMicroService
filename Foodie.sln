@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foodie.Service.ShoppingCart
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foodie.GatewaySolution", "Foodie.GatewaySolution\Foodie.GatewaySolution.csproj", "{40EAECF7-E580-4B98-A900-7C50B9B21EA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foodie.Service.EmailApi", "Foodie.Service.EmailApi\Foodie.Service.EmailApi.csproj", "{284B28C9-FC09-4B5A-A112-AEF65C9D2817}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Foodie.Service.EmailApi", "Foodie.Service.EmailApi\Foodie.Service.EmailApi.csproj", "{284B28C9-FC09-4B5A-A112-AEF65C9D2817}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E4A889B1-899B-46B5-A432-7708D1D128CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{284B28C9-FC09-4B5A-A112-AEF65C9D2817}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{284B28C9-FC09-4B5A-A112-AEF65C9D2817}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{284B28C9-FC09-4B5A-A112-AEF65C9D2817}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4A889B1-899B-46B5-A432-7708D1D128CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4A889B1-899B-46B5-A432-7708D1D128CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4A889B1-899B-46B5-A432-7708D1D128CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4A889B1-899B-46B5-A432-7708D1D128CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

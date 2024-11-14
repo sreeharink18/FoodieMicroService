@@ -1,5 +1,6 @@
 using Foodie.Service.EmailApi.Data;
 using Foodie.Service.EmailApi.ExternalServices;
+using Foodie.Service.EmailApi.Messages;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
 optionBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+
+builder.Services.AddHostedService<RabittMQAuthConsumer>();
+builder.Services.AddHostedService<RabittMQCartConsumer>();
 builder.Services.AddSingleton(new EmailService(optionBuilder.Options));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

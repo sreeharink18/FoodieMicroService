@@ -53,5 +53,10 @@ namespace Foodie.Service.EmailApi.ExternalServices
             }
             
         }
+        public async Task RegisterUserEmailAndLog(string email)
+        {
+            string message = "User Registeration Successful. <br/> Email : " + email;
+            await LogAndEmail(message, "foodie@gmail.com");
+        }
     }
 }

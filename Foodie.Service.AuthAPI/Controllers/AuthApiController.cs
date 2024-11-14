@@ -1,6 +1,8 @@
 ﻿using Foodie.Service.AuthAPI.Models;
 using Foodie.Service.AuthAPI.Models.DTO;
+using Foodie.Service.AuthAPI.RabbitMQSender;
 using Foodie.Service.AuthAPI.Service.IService;
+using Foodie.Service.AuthAPI.Utility;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -13,9 +15,12 @@ namespace Foodie.Service.AuthAPI.Controllers
 	public class AuthApiController : ControllerBase
 	{
 		private IAuthService _authService;
-		public AuthApiController(IAuthService authService)
+		private IRabittMQAuthMessageSender _messageSender;
+		public AuthApiController(IAuthService authService,IRabittMQAuthMessageSender messageSender)
 		{
 			_authService = authService;
+			_messageSender = messageSender;
+
 		}
 
 		[HttpPost("register")]
@@ -25,7 +30,7 @@ namespace Foodie.Service.AuthAPI.Controllers
 			if (!string.IsNullOrEmpty(errorMessage)) { 
 				return BadRequest(ApiResponseHelper.ErrorResponse(errorMessage));
 			}
-
+			_messageSender.SendMessage(model.Email, SD.RabbitMQQueueName);
 			return Ok(ApiResponseHelper.SuccessResponse("User Register is sussessfull"));
 		}
 		[HttpPost("login")]

@@ -1,5 +1,6 @@
 using Foodie.Service.ShoppingCartAPI.Data;
 using Foodie.Service.ShoppingCartAPI.ExternalService;
+using Foodie.Service.ShoppingCartAPI.RabbitMQSender;
 using Foodie.Service.ShoppingCartAPI.Service;
 using Foodie.Service.ShoppingCartAPI.Service.IService;
 using Foodie.Service.ShoppingCartAPI.Utility;
@@ -20,7 +21,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<BackendApiAuthenticationHttpClientHandler>();
 
-
+builder.Services.AddScoped<IRabittMQCartMessageSender,RabittMQCartMessageSender>();
 builder.Services.AddScoped<IProductService,ProductService>();
 builder.Services.AddHttpClient("Product", u => u.BaseAddress =
 new Uri(builder.Configuration["ServiceUrls:ProductApi"])).AddHttpMessageHandler<BackendApiAuthenticationHttpClientHandler>();

@@ -1,5 +1,6 @@
 using Foodie.Service.AuthAPI.Data;
 using Foodie.Service.AuthAPI.Models;
+using Foodie.Service.AuthAPI.RabbitMQSender;
 using Foodie.Service.AuthAPI.Service;
 using Foodie.Service.AuthAPI.Service.IService;
 using Microsoft.AspNetCore.Identity;
@@ -18,6 +19,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFramework
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IAuthService,AuthService>();
 builder.Services.AddScoped<IJwtTokenGenerator,JwtTokenGenerator>();
+builder.Services.AddScoped<IRabittMQAuthMessageSender,RabittMQAuthMessageSender>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
